@@ -1,5 +1,5 @@
 'use client'
-
+import { useState } from 'react'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay } from 'date-fns'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -40,6 +40,8 @@ const events = [
 ]
 
 export default function Scheduler() {
+
+  const [selectedEvent, setSelectedEvent] = useState<any>(null)
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: '#0f172a' }}>
       
@@ -81,11 +83,15 @@ export default function Scheduler() {
         {/* Calendar Section */}
         <div style={{ flex: 1, padding: '20px', backgroundColor: '#0f172a' }}>
         <Calendar
+
+
   localizer={localizer}
   events={events}
   startAccessor="start"
   endAccessor="end"
   defaultView="day"
+  onSelectEvent={(event) => setSelectedEvent(event)}
+
   style={{
     height: '100%',
     backgroundColor: '#1e293b',
@@ -104,8 +110,56 @@ export default function Scheduler() {
     }
   })}
 />
+
+
+
+
         </div>
       </div>
+
+      {selectedEvent && (
+  <div style={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}>
+    <div style={{
+      backgroundColor: '#1f2937',
+      padding: '30px',
+      borderRadius: '8px',
+      width: '400px',
+      color: 'white'
+    }}>
+      <h2 style={{ marginBottom: '20px' }}>Appointment Details</h2>
+      <p><strong>Patient:</strong> {selectedEvent.title}</p>
+      <p><strong>Start:</strong> {selectedEvent.start.toString()}</p>
+      <p><strong>End:</strong> {selectedEvent.end.toString()}</p>
+
+      <button
+        onClick={() => setSelectedEvent(null)}
+        style={{
+          marginTop: '20px',
+          padding: '10px 15px',
+          backgroundColor: '#2563eb',
+          border: 'none',
+          borderRadius: '6px',
+          color: 'white',
+          cursor: 'pointer'
+        }}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
+
     </div>
   )
 }
