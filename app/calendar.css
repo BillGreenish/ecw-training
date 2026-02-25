@@ -1,0 +1,26 @@
+.rbc-time-view,
+.rbc-time-content,
+.rbc-time-header,
+.rbc-timeslot-group {
+  background-color: #1e293b !important;
+  color: white !important;
+}
+
+.rbc-time-gutter,
+.rbc-label {
+  color: #9ca3af !important;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid #334155 !important;
+}
+
+.rbc-time-header-content {
+  border-left: 1px solid #334155 !important;
+}
+
+.rbc-header {
+  background-color: #111827 !important;
+  color: white !important;
+  border-bottom: 1px solid #334155 !important;
+}

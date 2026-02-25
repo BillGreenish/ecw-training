@@ -3,6 +3,16 @@
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay } from 'date-fns'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './calendar.css'
+
+
+
+
+
+
+
+
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -70,14 +80,30 @@ export default function Scheduler() {
 
         {/* Calendar Section */}
         <div style={{ flex: 1, padding: '20px', backgroundColor: '#0f172a' }}>
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            defaultView="day"
-            style={{ height: '100%', backgroundColor: 'white', borderRadius: '8px' }}
-          />
+        <Calendar
+  localizer={localizer}
+  events={events}
+  startAccessor="start"
+  endAccessor="end"
+  defaultView="day"
+  style={{
+    height: '100%',
+    backgroundColor: '#1e293b',
+    borderRadius: '8px',
+    padding: '10px',
+    color: 'white'
+  }}
+  eventPropGetter={() => ({
+    style: {
+      backgroundColor: '#2563eb',
+      borderRadius: '6px',
+      border: 'none',
+      padding: '4px',
+      color: 'white',
+      fontSize: '14px'
+    }
+  })}
+/>
         </div>
       </div>
     </div>
